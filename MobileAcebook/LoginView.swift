@@ -41,7 +41,7 @@ struct LoginView: View {
                     //if User is in the database (contact backend): redirect to feedview
                     //else tell user credentials are wrong and try again
                 }
-                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                .frame(maxWidth: .infinity)
                 .accessibilityIdentifier("loginButton")
             }
                     
