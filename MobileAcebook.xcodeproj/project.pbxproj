@@ -22,6 +22,7 @@
 		AE5D85E62AC9B077009680C6 /* AuthenticationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5D85E52AC9B077009680C6 /* AuthenticationServiceProtocol.swift */; };
 		AE5D85E82AC9B29A009680C6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5D85E72AC9B29A009680C6 /* User.swift */; };
 		F16DEA242BCE9588003B71FC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16DEA232BCE9588003B71FC /* LoginView.swift */; };
+		F1E4A8372BCEBB80002851F4 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E4A8362BCEBB80002851F4 /* FeedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		AE5D85E52AC9B077009680C6 /* AuthenticationServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServiceProtocol.swift; sourceTree = "<group>"; };
 		AE5D85E72AC9B29A009680C6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F16DEA232BCE9588003B71FC /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		F1E4A8362BCEBB80002851F4 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				AE5D85D92AC8A337009680C6 /* WelcomePageView.swift */,
 				F16DEA232BCE9588003B71FC /* LoginView.swift */,
 				96431E972BCE78680028C3DA /* SignUpView.swift */,
+				F1E4A8362BCEBB80002851F4 /* FeedView.swift */,
 			);
 			path = MobileAcebook;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE5D85E12AC9AFA9009680C6 /* AuthenticationService.swift in Sources */,
+				F1E4A8372BCEBB80002851F4 /* FeedView.swift in Sources */,
 				AE5D85E62AC9B077009680C6 /* AuthenticationServiceProtocol.swift in Sources */,
 				AE5D85B02AC8A221009680C6 /* MobileAcebookApp.swift in Sources */,
 				4E1FCC6B2BCE8A8500281B11 /* Post.swift in Sources */,
