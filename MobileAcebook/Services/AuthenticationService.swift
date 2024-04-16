@@ -10,4 +10,9 @@ class AuthenticationService: AuthenticationServiceProtocol {
         // Logic to call the backend API for signing up
         return true // placeholder
     }
+    
+    func login(user: User) -> Bool {
+        // Logic to call backend API for logging in
+        return true // placeholder
+    }
 }
