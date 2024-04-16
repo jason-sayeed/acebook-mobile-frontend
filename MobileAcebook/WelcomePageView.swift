@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct WelcomePageView: View {
+    
+    let authenticationService = AuthenticationService()
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -29,7 +32,7 @@ struct WelcomePageView: View {
                     
                     Spacer()
     
-                    NavigationLink(destination: SignUpView()) {
+                    NavigationLink(destination: SignUpView(authenticationService: authenticationService)) {
                         Text("Sign Up")
                     }
                     NavigationLink(destination: LoginView()) {

@@ -6,7 +6,7 @@
 //
 
 public protocol AuthenticationServiceProtocol {
-    func signUp(user: User) -> Bool
+    func signUpAsync(email: String, username: String, password: String) async throws -> Bool
     
     func login(user: User) -> Bool
 }

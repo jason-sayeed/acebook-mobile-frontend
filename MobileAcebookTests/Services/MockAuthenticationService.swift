@@ -12,4 +12,8 @@ class MockAuthenticationService: AuthenticationServiceProtocol {
         // Mocked logic for unit tests
         return true // placeholder
     }
+    func login(user: User) -> Bool {
+        // Mocked logic for unit tests
+        return true // placeholder
+    }
 }
