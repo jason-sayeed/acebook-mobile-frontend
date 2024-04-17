@@ -41,6 +41,6 @@ struct FeedView: View {
     }
 }
 
-//#Preview {
-//    FeedView()
-//}
+#Preview {
+    FeedView()
+}

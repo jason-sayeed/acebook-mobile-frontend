@@ -92,10 +92,12 @@ struct SignUpView: View {
                     }
                     
                 }
-                NavigationLink(destination: LoginView(authenticationService: authenticationService)) {
-                    Text("Log in")
+                HStack {
+                    Text("Already have an account?")
+                    NavigationLink(destination: LoginView(authenticationService: authenticationService)) {
+                        Text("Log in")
+                    }
                 }
-                .buttonStyle(.borderedProminent)
                 Spacer()
             }
             .accessibilityIdentifier("signUpButton")

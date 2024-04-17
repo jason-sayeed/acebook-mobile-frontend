@@ -37,6 +37,6 @@ struct NewPostView: View {
     }
 }
 
-//#Preview {
-//    NewPostView()
-//}
+#Preview {
+    NewPostView()
+}

@@ -75,9 +75,17 @@ struct LoginView: View {
                                 message: Text("Please try again"))
                         }
                     }
+                    HStack {
+                        Text("Don't have an account?")
+                        NavigationLink(destination: SignUpView(authenticationService: authenticationService)) {
+                            Text("Sign up")
+                        }
+                    }
+                    Spacer()
                 }
                 Spacer()
             }
+            .navigationBarBackButtonHidden(true)
         }
     }
 }
