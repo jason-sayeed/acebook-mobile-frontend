@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol PostsServiceProtocol {
-    func getAllPosts() async throws -> [String]
+    func getAllPosts() async throws -> [[AnyHashable: Any]]
 }

@@ -9,7 +9,20 @@ import Foundation
 
 struct FeedView: View {
     
-    @State private var posts: [String] = []
+    @State private var posts: [[AnyHashable: Any]] = []
+    
+//    struct PostItem: Hashable {
+//        var user: String
+//        var content: String
+//        // Add any other properties as needed
+//
+//        // Implementing hash(into:) method to conform to Hashable
+//        func hash(into hasher: inout Hasher) {
+//            hasher.combine(user)
+//            hasher.combine(content)
+//            // Combine other properties if needed
+//        }
+//    }
     
     var body: some View {
         NavigationView{
@@ -25,16 +38,19 @@ struct FeedView: View {
                     }
                     .padding()
                     List {
-                        
+
                     }
-                    ForEach(posts, id: \.self) {item in
-                        Text("User goes here").fontWeight(.semibold)
-                            .multilineTextAlignment(.trailing)
-                        Text(item)
-                            .padding(10)
-                        Divider()
-                    }
-                    Spacer()
+//                    print(posts)
+//                    Text("Example")
+//                      print({posts.first.keys["_id"]})
+//                    ForEach(posts, id: \.self) {item in
+//                        Text("User: ").fontWeight(.semibold)
+//                            .multilineTextAlignment(.trailing)
+//                        Text(item)
+//                            .padding(10)
+//                        Divider()
+////                    }
+//                    Spacer()
                 }
             }
             .onAppear {
