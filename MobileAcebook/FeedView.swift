@@ -4,12 +4,13 @@
 //
 //  Created by Daniela Castilla on 16/04/2024.
 //
-
 import SwiftUI
+import Foundation
 
 struct FeedView: View {
-
-    var fakeFeed = ["Post 1", "Post 2", "Post 3", "A very long post, to see how it behaves. Once upon a midnight dreary while I pondered weak and weary...", "Another post", "If you're a bird be an early bird to catch a worm for your breakfast plate. If you're a bird be an early bird.\nBut if you're a worm, sleep late.", "And another post, mostly because I just want the stupid thing to scroll down goddammit. Someday I'll get there I'm sure."]
+    
+    @State private var posts: [String] = []
+    
     var body: some View {
         NavigationView{
             ScrollView(.vertical) {
@@ -26,7 +27,7 @@ struct FeedView: View {
                     List {
                         
                     }
-                    ForEach(fakeFeed, id: \.self) {item in
+                    ForEach(posts, id: \.self) {item in
                         Text("User goes here").fontWeight(.semibold)
                             .multilineTextAlignment(.trailing)
                         Text(item)
@@ -36,12 +37,23 @@ struct FeedView: View {
                     Spacer()
                 }
             }
+            .onAppear {
+                Task {
+                    do {
+                        posts = try await PostsService().getAllPosts()
+                    } catch {
+                        
+                        print("Error fetching posts: \(error)")
+                    }
+                }
+                
+            }
+            
         }
-        
-        
     }
 }
-
+        
 #Preview {
-    FeedView()
-}
+        FeedView()
+        }
+ 
