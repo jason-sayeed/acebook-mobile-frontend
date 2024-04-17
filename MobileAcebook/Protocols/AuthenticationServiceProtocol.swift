@@ -8,5 +8,5 @@
 public protocol AuthenticationServiceProtocol {
     func signUpAsync(email: String, username: String, password: String) async throws -> Bool
     
-    func login(user: User) -> Bool
+    func loginAsync(email: String, password: String) async throws -> Bool
 }
