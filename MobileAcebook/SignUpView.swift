@@ -60,7 +60,7 @@ struct SignUpView: View {
                     HStack {
                         Image(systemName: "lock")
                             .foregroundColor(.gray)
-                        TextField("Password", text: $password)
+                        PasswordFieldView("Password", text: $password)
                             .multilineTextAlignment(.leading)
                             .textInputAutocapitalization(.never)
                             .autocorrectionDisabled(true)
@@ -92,7 +92,7 @@ struct SignUpView: View {
                     }
                     
                 }
-                NavigationLink(destination: LoginView()) {
+                NavigationLink(destination: LoginView(authenticationService: authenticationService)) {
                     Text("Log in")
                 }
                 .buttonStyle(.borderedProminent)

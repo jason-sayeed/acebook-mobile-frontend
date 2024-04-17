@@ -37,11 +37,10 @@ struct FeedView: View {
                 }
             }
         }
-        
-        
+        .navigationBarBackButtonHidden(true)
     }
 }
 
-#Preview {
-    FeedView()
-}
+//#Preview {
+//    FeedView()
+//}

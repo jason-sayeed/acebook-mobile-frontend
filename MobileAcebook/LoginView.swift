@@ -12,68 +12,72 @@ struct LoginView: View {
     @State var email = ""
     @State var password = ""
     @State var failureAlert = false
+    @State var isAuthenticated = false
     
     init(authenticationService: AuthenticationService) {
         self.authenticationService = authenticationService
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
-                Spacer()
-                Text("Welcome to Acebook!")
-                    .font(.largeTitle)
-                    .padding(.bottom, 20)
-                    .accessibilityIdentifier("welcomeText")
-                Spacer()
-                Image("makers-logo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 200, height: 200)
-                    .accessibilityIdentifier("makers-logo")
-                Spacer()
-                Form {
-                    HStack {
-                        Image(systemName: "envelope")
-                            .foregroundColor(.gray)
-                        TextField("Email", text: $email)
-                            .multilineTextAlignment(.leading)
-                            .textInputAutocapitalization(.never)
-                            .autocorrectionDisabled(true)
-                    }
-                    HStack {
-                        Image(systemName: "lock")
-                            .foregroundColor(.gray)
-                        PasswordFieldView("Password", text: $password)
-                            .multilineTextAlignment(.leading)
-                            .textInputAutocapitalization(.never)
-                            .autocorrectionDisabled(true)
-                    }
-                    Button("Log In") {
-                        Task {
-                            do {
-                                let authenticated = try await authenticationService.loginAsync(email: email, password: password)
-                                if authenticated {
-                                    print("Login Successful")
-                                } else {
-                                    failureAlert = true
+        if isAuthenticated {
+            FeedView()
+        } else {
+            NavigationView {
+                VStack {
+                    Spacer()
+                    Text("Welcome to Acebook!")
+                        .font(.largeTitle)
+                        .padding(.bottom, 20)
+                        .accessibilityIdentifier("welcomeText")
+                    Spacer()
+                    Image("makers-logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 200, height: 200)
+                        .accessibilityIdentifier("makers-logo")
+                    Spacer()
+                    Form {
+                        HStack {
+                            Image(systemName: "envelope")
+                                .foregroundColor(.gray)
+                            TextField("Email", text: $email)
+                                .multilineTextAlignment(.leading)
+                                .textInputAutocapitalization(.never)
+                                .autocorrectionDisabled(true)
+                        }
+                        HStack {
+                            Image(systemName: "lock")
+                                .foregroundColor(.gray)
+                            PasswordFieldView("Password", text: $password)
+                                .multilineTextAlignment(.leading)
+                                .textInputAutocapitalization(.never)
+                                .autocorrectionDisabled(true)
+                        }
+                        Button("Log In") {
+                            Task {
+                                do {
+                                    isAuthenticated = try await authenticationService.loginAsync(email: email, password: password)
+                                    if isAuthenticated {
+                                        print("Login Successful")
+                                    } else {
+                                        failureAlert = true
+                                    }
+                                } catch {
+                                    print(error)
                                 }
-                            } catch {
-                                print(error)
                             }
                         }
-                    }
-                    .frame(maxWidth: .infinity)
-                    .accessibilityIdentifier("loginButton")
-                    .alert(isPresented: $failureAlert) {
-                        Alert(
-                            title: Text("Login Failed"),
-                            message: Text("Please try again"))
+                        .frame(maxWidth: .infinity)
+                        .accessibilityIdentifier("loginButton")
+                        .alert(isPresented: $failureAlert) {
+                            Alert(
+                                title: Text("Login Failed"),
+                                message: Text("Please try again"))
+                        }
                     }
                 }
+                Spacer()
             }
-            Spacer()
         }
-        .navigationBarBackButtonHidden(true)
     }
 }
