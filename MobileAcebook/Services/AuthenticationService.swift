@@ -8,7 +8,7 @@ import Foundation
 
 class AuthenticationService: AuthenticationServiceProtocol {
     func signUpAsync(email: String, username: String, password: String) async throws -> Bool {
-        guard let urlString = ProcessInfo.processInfo.environment["backend_url"],
+        guard let urlString = ProcessInfo.processInfo.environment["BACKEND_URL"],
               let url = URL(string: urlString + "/users") else {
             throw NSError(domain: "Invalid URL", code: 400, userInfo: nil)
         }
@@ -20,10 +20,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
         let jsonBody = try? JSONSerialization.data(withJSONObject: jsonReq)
         request.httpBody = jsonBody
         
-        
-        
         let (data, response) = try await URLSession.shared.data(for: request)
-        
         
         // Parse the fetched data to a String.
         guard let signUpResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
@@ -42,44 +39,8 @@ class AuthenticationService: AuthenticationServiceProtocol {
         return true
     }
     
-    
-    
-    
-    
-    
-    
-    
     func login(user: User) -> Bool {
         // Logic to call backend API for logging in
         return true // placeholder
     }
 }
-
-
-
-
-//func decodeAPI(){
-//    guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else{return}
-//
-//    let task = URLSession.shared.dataTask(with: url){
-//        data, response, error in
-//
-//        let decoder = JSONDecoder()
-//
-//        if let data = data{
-//            do{
-//                let tasks = try decoder.decode([Post].self, from: data)
-//                tasks.forEach{ i in
-//                    print(i.title)
-//                }
-//            }catch{
-//                print(error)
-//            }
-//        }
-//    }
-//    task.resume()
-//
-//}
-//decodeAPI()
-
-

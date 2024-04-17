@@ -16,32 +16,27 @@ struct WelcomePageView: View {
             ZStack {
                 VStack {
                     Spacer()
-                    
                     Text("Welcome to Acebook!")
                         .font(.largeTitle)
                         .padding(.bottom, 20)
                         .accessibilityIdentifier("welcomeText")
-                    
                     Spacer()
-                    
                     Image("makers-logo")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 200, height: 200)
                         .accessibilityIdentifier("makers-logo")
-                    
                     Spacer()
     
                     NavigationLink(destination: SignUpView(authenticationService: authenticationService)) {
                         Text("Sign Up")
                     }
+                    .accessibilityIdentifier("signUpButton")
                     NavigationLink(destination: LoginView()) {
                         Text("Log In")
                     }
                     Spacer()
                 }
-                .accessibilityIdentifier("signUpButton")
-                
                 Spacer()
             }
         }
