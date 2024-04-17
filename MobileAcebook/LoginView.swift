@@ -8,53 +8,57 @@
 import SwiftUI
 
 struct LoginView: View {
-    
-    @State var username = ""
+    let authenticationService: AuthenticationService
+    @State var email = ""
     @State var password = ""
+    @State var failureAlert = false
+    
+    init(authenticationService: AuthenticationService) {
+        self.authenticationService = authenticationService
+    }
     
     var body: some View {
         VStack {
             Spacer()
-            
             Text("Welcome to Acebook!")
                 .font(.largeTitle)
                 .padding(.bottom, 20)
                 .accessibilityIdentifier("welcomeText")
-            
             Spacer()
-            
             Image("makers-logo")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 200, height: 200)
                 .accessibilityIdentifier("makers-logo")
-            
             Spacer()
             Form{
-                TextField("Username", text: $username)
+                TextField("Email", text: $email)
                     .multilineTextAlignment(.center)
                 SecureField("Password", text: $password)
                     .multilineTextAlignment(.center)
                 Button("Log In") {
-                    // logic:
-                    // add username and password to User struct
-                    //if User is in the database (contact backend): redirect to feedview
-                    //else tell user credentials are wrong and try again
+                    Task {
+                        do {
+                            let authenticated = try await authenticationService.loginAsync(email: email, password: password)
+                            if authenticated {
+                                print("Login Successful")
+                            } else {
+                                failureAlert = true
+                            }
+                        } catch {
+                            print(error)
+                        }
+                    }
                 }
                 .frame(maxWidth: .infinity)
                 .accessibilityIdentifier("loginButton")
-            }
-                    
+                .alert(isPresented: $failureAlert) {
+                    Alert(
+                        title: Text("Login Failed"),
+                        message: Text("Please try again"))
                 }
-                
-            
-            
-            Spacer()
-            
+            }
         }
+        Spacer()
     }
-
-
-#Preview {
-    LoginView()
 }

@@ -45,7 +45,7 @@ struct SignUpView: View {
             }
             .accessibilityIdentifier("signUpButton")
             
-            Spacer()
+            //Spacer()
             
         }
     }
