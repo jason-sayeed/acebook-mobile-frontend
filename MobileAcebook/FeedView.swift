@@ -8,11 +8,11 @@ import SwiftUI
 import Foundation
 
 struct FeedView: View {
-    let postsService: PostsService
+    let postsService: PostsServiceProtocol
     
     @State private var posts: [Post] = []
     
-    init(postsService: PostsService) {
+    init(postsService: PostsServiceProtocol) {
         self.postsService = postsService
     }
     var body: some View {
@@ -51,6 +51,7 @@ struct FeedView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
     

@@ -10,6 +10,7 @@ import SwiftUI
 struct WelcomePageView: View {
     
     let authenticationService = AuthenticationService()
+    let postsService = PostsService()
 
     var body: some View {
         NavigationView {
@@ -28,11 +29,11 @@ struct WelcomePageView: View {
                         .accessibilityIdentifier("makers-logo")
                     Spacer()
     
-                    NavigationLink(destination: SignUpView(authenticationService: authenticationService)) {
+                    NavigationLink(destination: SignUpView(authenticationService: authenticationService, postsService: postsService)) {
                         Text("Sign Up")
                     }
                     .accessibilityIdentifier("signUpButton")
-                    NavigationLink(destination: LoginView(authenticationService: authenticationService)) {
+                    NavigationLink(destination: LoginView(authenticationService: authenticationService, postsService: postsService)) {
                         Text("Log In")
                     }
                     Spacer()

@@ -17,7 +17,6 @@ class PostsService: PostsServiceProtocol {
             token = ""
         }
         
-        
         guard let urlString = ProcessInfo.processInfo.environment["BACKEND_URL"],
               let url = URL(string: urlString + "/posts") else {
             throw NSError(domain: "Invalid URL", code: 400, userInfo: nil)
@@ -25,16 +24,9 @@ class PostsService: PostsServiceProtocol {
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
         let (data, response) = try await URLSession.shared.data(for: request)
-        
-//        if let dataString = String(data: data, encoding: .utf8) {
-//            print("Raw Data: \(dataString)")
-//        } else {
-//            print("Failed to decode raw data as UTF-8 string")
-//        }
         
         let allPosts = try JSONDecoder().decode(PostsResponse.self, from: data)
         guard let postsResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
