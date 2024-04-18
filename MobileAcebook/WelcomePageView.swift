@@ -32,7 +32,7 @@ struct WelcomePageView: View {
                         Text("Sign Up")
                     }
                     .accessibilityIdentifier("signUpButton")
-                    NavigationLink(destination: LoginView()) {
+                    NavigationLink(destination: LoginView(authenticationService: authenticationService)) {
                         Text("Log In")
                     }
                     Spacer()
