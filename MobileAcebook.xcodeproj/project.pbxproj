@@ -13,6 +13,10 @@
 		4E1FCC6B2BCE8A8500281B11 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1FCC6A2BCE8A8500281B11 /* Post.swift */; };
 		4E9031B92BCFE41B00EEA951 /* PasswordFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9031B82BCFE41B00EEA951 /* PasswordFieldView.swift */; };
 		96431E982BCE78680028C3DA /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96431E972BCE78680028C3DA /* SignUpView.swift */; };
+		964ADB3B2BD11CCF002B4085 /* CommentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964ADB3A2BD11CCF002B4085 /* CommentsService.swift */; };
+		964ADB3D2BD11D47002B4085 /* CommentServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964ADB3C2BD11D47002B4085 /* CommentServiceProtocol.swift */; };
+		964ADB3F2BD12BBA002B4085 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964ADB3E2BD12BBA002B4085 /* CommentView.swift */; };
+		964ADB412BD134BC002B4085 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964ADB402BD134BC002B4085 /* Comment.swift */; };
 		AE5D85B02AC8A221009680C6 /* MobileAcebookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5D85AF2AC8A221009680C6 /* MobileAcebookApp.swift */; };
 		AE5D85B42AC8A224009680C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE5D85B32AC8A224009680C6 /* Assets.xcassets */; };
 		AE5D85B72AC8A224009680C6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE5D85B62AC8A224009680C6 /* Preview Assets.xcassets */; };
@@ -53,6 +57,10 @@
 		4E1FCC6A2BCE8A8500281B11 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		4E9031B82BCFE41B00EEA951 /* PasswordFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFieldView.swift; sourceTree = "<group>"; };
 		96431E972BCE78680028C3DA /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		964ADB3A2BD11CCF002B4085 /* CommentsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsService.swift; sourceTree = "<group>"; };
+		964ADB3C2BD11D47002B4085 /* CommentServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentServiceProtocol.swift; sourceTree = "<group>"; };
+		964ADB3E2BD12BBA002B4085 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
+		964ADB402BD134BC002B4085 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		AE5D85AC2AC8A221009680C6 /* MobileAcebook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileAcebook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE5D85AF2AC8A221009680C6 /* MobileAcebookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileAcebookApp.swift; sourceTree = "<group>"; };
 		AE5D85B32AC8A224009680C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -136,6 +144,7 @@
 				AE5D85B32AC8A224009680C6 /* Assets.xcassets */,
 				AE5D85B52AC8A224009680C6 /* Preview Content */,
 				AE5D85D92AC8A337009680C6 /* WelcomePageView.swift */,
+				964ADB3E2BD12BBA002B4085 /* CommentView.swift */,
 				F16DEA232BCE9588003B71FC /* LoginView.swift */,
 				96431E972BCE78680028C3DA /* SignUpView.swift */,
 				04B5F08E2BCEBDC50017428B /* NewPostView.swift */,
@@ -175,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				AE5D85E02AC9AFA9009680C6 /* AuthenticationService.swift */,
+				964ADB3A2BD11CCF002B4085 /* CommentsService.swift */,
 				049A75CC2BCFD7B8007644A3 /* PostsService.swift */,
 			);
 			path = Services;
@@ -193,6 +203,7 @@
 			children = (
 				AE5D85E72AC9B29A009680C6 /* User.swift */,
 				4E1FCC6A2BCE8A8500281B11 /* Post.swift */,
+				964ADB402BD134BC002B4085 /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -201,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				AE5D85E52AC9B077009680C6 /* AuthenticationServiceProtocol.swift */,
+				964ADB3C2BD11D47002B4085 /* CommentServiceProtocol.swift */,
 				049A75CA2BCFD79A007644A3 /* PostsServiceProtocol.swift */,
 			);
 			path = Protocols;
@@ -270,7 +282,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					AE5D85AB2AC8A221009680C6 = {
 						CreatedOnToolsVersion = 14.2;
@@ -339,13 +351,17 @@
 				04B5F08F2BCEBDC50017428B /* NewPostView.swift in Sources */,
 				AE5D85E12AC9AFA9009680C6 /* AuthenticationService.swift in Sources */,
 				F1E4A8372BCEBB80002851F4 /* FeedView.swift in Sources */,
+				964ADB3B2BD11CCF002B4085 /* CommentsService.swift in Sources */,
 				AE5D85E62AC9B077009680C6 /* AuthenticationServiceProtocol.swift in Sources */,
 				AE5D85B02AC8A221009680C6 /* MobileAcebookApp.swift in Sources */,
 				4E1FCC6B2BCE8A8500281B11 /* Post.swift in Sources */,
 				AE5D85E82AC9B29A009680C6 /* User.swift in Sources */,
 				4E9031B92BCFE41B00EEA951 /* PasswordFieldView.swift in Sources */,
+				964ADB3D2BD11D47002B4085 /* CommentServiceProtocol.swift in Sources */,
+				964ADB412BD134BC002B4085 /* Comment.swift in Sources */,
 				96431E982BCE78680028C3DA /* SignUpView.swift in Sources */,
 				F16DEA242BCE9588003B71FC /* LoginView.swift in Sources */,
+				964ADB3F2BD12BBA002B4085 /* CommentView.swift in Sources */,
 				AE5D85DA2AC8A337009680C6 /* WelcomePageView.swift in Sources */,
 				049A75CB2BCFD79A007644A3 /* PostsServiceProtocol.swift in Sources */,
 				049A75CD2BCFD7B8007644A3 /* PostsService.swift in Sources */,
@@ -423,6 +439,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -483,6 +500,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
