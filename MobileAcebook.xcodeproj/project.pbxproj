@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		049A75CB2BCFD79A007644A3 /* PostsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049A75CA2BCFD79A007644A3 /* PostsServiceProtocol.swift */; };
+		049A75CD2BCFD7B8007644A3 /* PostsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049A75CC2BCFD7B8007644A3 /* PostsService.swift */; };
 		04B5F08F2BCEBDC50017428B /* NewPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B5F08E2BCEBDC50017428B /* NewPostView.swift */; };
 		4E1FCC6B2BCE8A8500281B11 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1FCC6A2BCE8A8500281B11 /* Post.swift */; };
 		4E9031B92BCFE41B00EEA951 /* PasswordFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9031B82BCFE41B00EEA951 /* PasswordFieldView.swift */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		049A75CA2BCFD79A007644A3 /* PostsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsServiceProtocol.swift; sourceTree = "<group>"; };
+		049A75CC2BCFD7B8007644A3 /* PostsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsService.swift; sourceTree = "<group>"; };
 		04B5F08E2BCEBDC50017428B /* NewPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostView.swift; sourceTree = "<group>"; };
 		4E1FCC6A2BCE8A8500281B11 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		4E9031B82BCFE41B00EEA951 /* PasswordFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFieldView.swift; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				AE5D85E02AC9AFA9009680C6 /* AuthenticationService.swift */,
+				049A75CC2BCFD7B8007644A3 /* PostsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				AE5D85E52AC9B077009680C6 /* AuthenticationServiceProtocol.swift */,
+				049A75CA2BCFD79A007644A3 /* PostsServiceProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -341,6 +347,8 @@
 				96431E982BCE78680028C3DA /* SignUpView.swift in Sources */,
 				F16DEA242BCE9588003B71FC /* LoginView.swift in Sources */,
 				AE5D85DA2AC8A337009680C6 /* WelcomePageView.swift in Sources */,
+				049A75CB2BCFD79A007644A3 /* PostsServiceProtocol.swift in Sources */,
+				049A75CD2BCFD7B8007644A3 /* PostsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
