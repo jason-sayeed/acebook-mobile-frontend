@@ -7,9 +7,17 @@
 
 @testable import MobileAcebook
 
-//class MockAuthenticationService: AuthenticationServiceProtocol {
-//    func signUp(user: User) -> Bool {
-//        // Mocked logic for unit tests
-//        return true // placeholder
-//    }
-//}
+class MockAuthenticationService: AuthenticationServiceProtocol {
+    func signUpAsync(email: String, username: String, password: String) async throws -> Bool {
+        // Mocked logic for unit tests
+        return true // placeholder
+    }
+    func login(user: User) -> Bool {
+        // Mocked logic for unit tests
+        return true // placeholder
+    }
+    
+    func loginAsync(email: String, password: String) async throws -> Bool {
+        return true // placeholder
+    }
+}
