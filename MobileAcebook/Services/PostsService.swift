@@ -9,7 +9,7 @@ import Foundation
 
 class PostsService: PostsServiceProtocol {
     
-    func getAllPosts() async throws -> [[AnyHashable: Any]] {
+    func getAllPostsAsync() async throws -> [Post] {
         var token: String
         if let jwtToken = UserDefaults.standard.string(forKey: "jwttoken") {
             token = jwtToken
@@ -39,40 +39,20 @@ class PostsService: PostsServiceProtocol {
             print("Failed to decode raw data as UTF-8 string")
         }
         
-        if let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
-            print(jsonArray)
-            return jsonArray
-        } else {
-            let responseString = String(data: data, encoding: .utf8) ?? "Failed to decode response data"
-                print("Invalid JSON format. Response: \(responseString)")
-            throw NSError(domain: "Invalid JSON", code: 400, userInfo: nil)
+        let allPosts = try JSONDecoder().decode(PostsResponse.self, from: data)
+        guard let postsResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+              let token = postsResponse["token"] as? String
+        else {
+            throw NSError(domain: "Invalid data", code: 500, userInfo: nil)
         }
-           
-            
-        
-
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw NSError(domain: "Invalid response", code: 500, userInfo: nil)
+        }
+        if httpResponse.statusCode == 200 {
+            UserDefaults.standard.setValue(token, forKey: "jwttoken")
+            return allPosts.posts
+        } else {
+            return []
+        }
     }
 }
-
-
-//catch {
-//            // Handle JSON parsing errors
-//            throw NSError(domain: "JSON Parsing Error", code: 500, userInfo: nil)
-//        }
-//        do {
-//            guard let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as? [[AnyHashable: Any]] else {
-//                throw NSError(domain: "Invalid data", code: 500, userInfo: nil)
-//            }
-//            print(jsonArray)
-//            return jsonArray
-
-//        var posts: [String] = []
-//
-//            for jsonItem in jsonArray {
-//            if let jsonData = try? JSONSerialization.data(withJSONObject: jsonItem, options: []),
-//               let jsonString = String(data: jsonData, encoding: .utf8) {
-//                posts.append(jsonString)
-//            } else {
-//                print("Error converting JSON item to string")
-//            }
-//        }
