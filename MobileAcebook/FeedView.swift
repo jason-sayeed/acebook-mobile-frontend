@@ -8,8 +8,13 @@ import SwiftUI
 import Foundation
 
 struct FeedView: View {
+    let postsService: PostsService
     
     @State private var posts: [Post] = []
+    
+    init(postsService: PostsService) {
+        self.postsService = postsService
+    }
     var body: some View {
         NavigationView{
             ScrollView(.vertical) {
@@ -36,8 +41,7 @@ struct FeedView: View {
                 .onAppear {
                     Task {
                         do {
-                            posts = try await PostsService().getAllPostsAsync()
-                            print(posts)
+                            posts = try await postsService.getAllPostsAsync()
                         } catch {
                             
                             print("Error fetching posts: \(error)")
@@ -50,6 +54,3 @@ struct FeedView: View {
     }
 }
     
-    #Preview {
-        FeedView()
-    }

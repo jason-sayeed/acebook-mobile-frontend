@@ -13,9 +13,7 @@ class PostsService: PostsServiceProtocol {
         var token: String
         if let jwtToken = UserDefaults.standard.string(forKey: "jwttoken") {
             token = jwtToken
-            print("Token: \(token)")
         } else {
-            print("Token is nil")
             token = ""
         }
         
@@ -31,13 +29,12 @@ class PostsService: PostsServiceProtocol {
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
         let (data, response) = try await URLSession.shared.data(for: request)
-        print(response)
         
-        if let dataString = String(data: data, encoding: .utf8) {
-            print("Raw Data: \(dataString)")
-        } else {
-            print("Failed to decode raw data as UTF-8 string")
-        }
+//        if let dataString = String(data: data, encoding: .utf8) {
+//            print("Raw Data: \(dataString)")
+//        } else {
+//            print("Failed to decode raw data as UTF-8 string")
+//        }
         
         let allPosts = try JSONDecoder().decode(PostsResponse.self, from: data)
         guard let postsResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
