@@ -5,7 +5,12 @@
 //  Created by Aakash Rana on 16/04/2024.
 //
 
-public struct Post {
+public struct Post: Codable {
+    let _id: String
     let message: String
     let createdBy: User
+}
+
+public struct PostsResponse: Codable{
+    let posts: [Post]
 }
