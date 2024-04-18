@@ -19,8 +19,6 @@ class PostsService: PostsServiceProtocol {
             token = ""
         }
         
-        print(token)
-        
         
         guard let urlString = ProcessInfo.processInfo.environment["BACKEND_URL"],
               let url = URL(string: urlString + "/posts") else {
@@ -32,8 +30,8 @@ class PostsService: PostsServiceProtocol {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
-        let (data, _) = try await URLSession.shared.data(for: request)
-        //        print(data)
+        let (data, response) = try await URLSession.shared.data(for: request)
+        print(response)
         
         if let dataString = String(data: data, encoding: .utf8) {
             print("Raw Data: \(dataString)")
@@ -41,18 +39,18 @@ class PostsService: PostsServiceProtocol {
             print("Failed to decode raw data as UTF-8 string")
         }
         
-        
-            // Parse the JSON data into a Foundation object
-            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: [])
-//            let jsonString = String(data: jsonData, encoding: .utf8)
-            if let jsonArray = jsonObject as? [[String: Any]] {
-                // You can iterate over its elements
-                print("JSON Array: \(jsonArray)")
-                return jsonArray
-            }
+        if let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
+            print(jsonArray)
+            return jsonArray
+        } else {
+            let responseString = String(data: data, encoding: .utf8) ?? "Failed to decode response data"
+                print("Invalid JSON format. Response: \(responseString)")
+            throw NSError(domain: "Invalid JSON", code: 400, userInfo: nil)
+        }
+           
             
         
-        return [[AnyHashable: Any]]
+
     }
 }
 
