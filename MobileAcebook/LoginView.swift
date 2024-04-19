@@ -11,6 +11,7 @@ struct LoginView: View {
     let authenticationService: AuthenticationServiceProtocol
     let postsService: PostsServiceProtocol
     let commentsService: CommentsServiceProtocol
+    let likesService: LikesServiceProtocol
     @State var email = ""
     @State var password = ""
     @State var failureAlert = false
@@ -18,7 +19,7 @@ struct LoginView: View {
     
     var body: some View {
         if isAuthenticated {
-            FeedView(postsService: postsService, commentsService: commentsService)
+            FeedView(postsService: postsService, commentsService: commentsService, likesService: likesService)
         } else {
             NavigationView {
                 VStack {
@@ -75,7 +76,7 @@ struct LoginView: View {
                     }
                     HStack {
                         Text("Don't have an account?")
-                        NavigationLink(destination: SignUpView(authenticationService: authenticationService, postsService: postsService, commentsService: commentsService)) {
+                        NavigationLink(destination: SignUpView(authenticationService: authenticationService, postsService: postsService, commentsService: commentsService, likesService: likesService)) {
                             Text("Sign up")
                         }
                     }

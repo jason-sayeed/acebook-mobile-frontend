@@ -10,6 +10,7 @@ import Foundation
 struct FeedView: View {
     let postsService: PostsServiceProtocol
     let commentsService: CommentsServiceProtocol
+    let likesService: LikesServiceProtocol
     
     @State private var posts: [Post] = []
     
@@ -28,7 +29,7 @@ struct FeedView: View {
                     .font(.system(size: 22))
                     .padding()
                     ForEach(posts, id: \._id) { post in
-                        PostView(post: post, commentsService: commentsService)
+                        PostView(post: post, commentsService: commentsService, likesService: likesService)
                     }
                 }
             }
