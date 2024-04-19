@@ -30,11 +30,11 @@ class PostsService: PostsServiceProtocol {
         
         let (data, response) = try await URLSession.shared.data(for: request)
         
-//        if let dataString = String(data: data, encoding: .utf8) {
-//            print("Raw Data: \(dataString)")
-//        } else {
-//            print("Failed to decode raw data as UTF-8 string")
-//        }
+        //        if let dataString = String(data: data, encoding: .utf8) {
+        //            print("Raw Data: \(dataString)")
+        //        } else {
+        //            print("Failed to decode raw data as UTF-8 string")
+        //        }
         
         let allPosts = try JSONDecoder().decode(PostsResponse.self, from: data)
         guard let postsResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
@@ -50,6 +50,42 @@ class PostsService: PostsServiceProtocol {
             return allPosts.posts
         } else {
             return []
+        }
+    }
+    
+    func createPostAsync(message: String) async throws -> Bool {
+        guard let urlString = ProcessInfo.processInfo.environment["BACKEND_URL"],
+              let url = URL(string: urlString + "/posts") else {
+            throw NSError(domain: "Invalid URL", code: 400, userInfo: nil)
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let jsonReq = ["message": message]
+        let jsonBody = try? JSONSerialization.data(withJSONObject: jsonReq)
+        request.httpBody = jsonBody
+        
+        let token = UserDefaults.standard.string(forKey: "jwttoken") ?? ""
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let postResponse = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+              let message = postResponse["message"] as? String
+        else {
+            // Throw an error if data parsing fails.
+            throw NSError(domain: "Invalid data", code: 500, userInfo: nil)
+        }
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw NSError(domain: "Invalid response", code: 500, userInfo: nil)
+        }
+        print(message)
+        if let token = postResponse["token"] as? String, httpResponse.statusCode == 201 {
+            UserDefaults.standard.setValue(token, forKey: "jwttoken")
+            return true
+        } else {
+            return false
         }
     }
 }

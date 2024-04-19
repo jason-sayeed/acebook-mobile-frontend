@@ -9,7 +9,10 @@ import SwiftUI
 
 struct NewPostView: View {
     
-    @State var typing = ""
+    let postService: PostsServiceProtocol
+    
+    @State private var post: String = ""
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         VStack {
@@ -21,17 +24,22 @@ struct NewPostView: View {
             
             Text("What's On Your Mind?")
             LazyVStack(alignment: .center) {
-                TextEditor(text: $typing)
+                TextEditor(text: $post)
                     .frame(width: 350, height: 200, alignment: .center)
-                Text(typing).opacity(0)
-            
             }
             .shadow(radius:5)
             
-            Button("POST!") {
-                
+            Button("Create Post") {
+                Task {
+                    do {
+                        let success = try await postService.createPostAsync(message: post)
+                        print(success)
+                        presentationMode.wrappedValue.dismiss()
+                    } catch {
+                        print("Error creating post: \(error)")
+                    }
+                }
             }
-            
             Spacer()
         }
     }

@@ -29,7 +29,7 @@ struct FeedView: View {
                         .scaledToFit()
                         .frame(width: 90, height: 90)
                         .accessibilityIdentifier("makers-logo")
-                    NavigationLink(destination: NewPostView()) {
+                    NavigationLink(destination: NewPostView(postService: postsService)) {
                         Text("What's on your mind?")
                     }
                     .padding()
