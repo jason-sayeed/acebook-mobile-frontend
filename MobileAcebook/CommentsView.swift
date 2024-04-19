@@ -24,13 +24,13 @@ struct CommentsView: View {
                     Task {
                         do {
                             let success = try await commentsService.createCommentAsync(postId: post._id, message: comment)
+                            getComments()
                             print(success)
                         } catch {
                             print("Error creating comments: \(error)")
                         }
                         comment = ""
                     }
-                    getComments()
                 }
             }
             .padding()
