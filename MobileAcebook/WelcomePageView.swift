@@ -27,7 +27,6 @@ struct WelcomePageView: View {
                         .frame(width: 200, height: 200)
                         .accessibilityIdentifier("makers-logo")
                     Spacer()
-    
                     NavigationLink(destination: SignUpView(authenticationService: authenticationService)) {
                         Text("Sign Up")
                     }
