@@ -15,16 +15,12 @@ struct SignUpView: View {
     
     let authenticationService: AuthenticationServiceProtocol
     let postsService: PostsServiceProtocol
+    let commentsService: CommentsServiceProtocol
     @State var email = ""
     @State var username = ""
     @State var password = ""
     @State var showAlert = false
     @State private var activeAlert: ActiveAlert = .failure
-    
-    init(authenticationService: AuthenticationServiceProtocol, postsService: PostsServiceProtocol) {
-        self.authenticationService = authenticationService
-        self.postsService = postsService
-    }
     
     var body: some View {
         NavigationView {
@@ -95,7 +91,7 @@ struct SignUpView: View {
                 }
                 HStack {
                     Text("Already have an account?")
-                    NavigationLink(destination: LoginView(authenticationService: authenticationService, postsService: postsService)) {
+                    NavigationLink(destination: LoginView(authenticationService: authenticationService, postsService: postsService, commentsService: commentsService)) {
                         Text("Log in")
                     }
                 }

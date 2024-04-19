@@ -9,16 +9,11 @@ import SwiftUI
 
 struct CommentsView: View {
     
-    let commentService: CommentServiceProtocol
+    @State var post: Post
+    let commentsService: CommentsServiceProtocol
     
     @State private var comments: [Comment] = []
     @State private var comment: String = ""
-    @State private var post: Post
-    
-    init(post: Post, commentService: CommentServiceProtocol) {
-        self.post = post
-        self.commentService = commentService
-    }
     
     var body: some View {
         VStack {
@@ -28,7 +23,7 @@ struct CommentsView: View {
                 Button("Create Comment") {
                     Task {
                         do {
-                            let success = try await commentService.createCommentAsync(postId: post._id, message: comment)
+                            let success = try await commentsService.createCommentAsync(postId: post._id, message: comment)
                             print(success)
                         } catch {
                             print("Error creating comments: \(error)")
@@ -52,7 +47,7 @@ struct CommentsView: View {
     private func getComments() {
         Task {
             do {
-                comments = try await commentService.getCommentsByPostAsync(postId: post._id)
+                comments = try await commentsService.getCommentsByPostAsync(postId: post._id)
                 print (comments)
             } catch {
                 print("Error fetching comments: \(error)")

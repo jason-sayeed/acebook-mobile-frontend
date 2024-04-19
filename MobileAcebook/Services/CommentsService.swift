@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CommentService: CommentServiceProtocol {
+class CommentsService: CommentsServiceProtocol {
     func createCommentAsync(postId: String, message: String) async throws -> Bool {
         guard let urlString = ProcessInfo.processInfo.environment["BACKEND_URL"],
               let url = URL(string: urlString + "/comments/" + postId) else {
