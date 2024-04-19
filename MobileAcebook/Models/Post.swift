@@ -8,6 +8,7 @@
 public struct Post: Codable {
     let _id: String
     let message: String
+    let likes: [String]
     let createdBy: User
 }
 

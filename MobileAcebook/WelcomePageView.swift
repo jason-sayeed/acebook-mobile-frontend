@@ -12,6 +12,7 @@ struct WelcomePageView: View {
     let authenticationService = AuthenticationService()
     let postsService = PostsService()
     let commentsService = CommentsService()
+    let likesService = LikesService()
 
     var body: some View {
         NavigationView {
@@ -29,11 +30,11 @@ struct WelcomePageView: View {
                         .frame(width: 200, height: 200)
                         .accessibilityIdentifier("makers-logo")
                     Spacer()
-                    NavigationLink(destination: SignUpView(authenticationService: authenticationService, postsService: postsService, commentsService: commentsService)) {
+                    NavigationLink(destination: SignUpView(authenticationService: authenticationService, postsService: postsService, commentsService: commentsService, likesService: likesService)) {
                         Text("Sign Up")
                     }
                     .accessibilityIdentifier("signUpButton")
-                    NavigationLink(destination: LoginView(authenticationService: authenticationService, postsService: postsService, commentsService: commentsService)) {
+                    NavigationLink(destination: LoginView(authenticationService: authenticationService, postsService: postsService, commentsService: commentsService, likesService: likesService)) {
                         Text("Log In")
                     }
                     Spacer()

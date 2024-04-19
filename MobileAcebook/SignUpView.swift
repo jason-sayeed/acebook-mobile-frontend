@@ -16,6 +16,7 @@ struct SignUpView: View {
     let authenticationService: AuthenticationServiceProtocol
     let postsService: PostsServiceProtocol
     let commentsService: CommentsServiceProtocol
+    let likesService: LikesServiceProtocol
     @State var email = ""
     @State var username = ""
     @State var password = ""
@@ -91,7 +92,7 @@ struct SignUpView: View {
                 }
                 HStack {
                     Text("Already have an account?")
-                    NavigationLink(destination: LoginView(authenticationService: authenticationService, postsService: postsService, commentsService: commentsService)) {
+                    NavigationLink(destination: LoginView(authenticationService: authenticationService, postsService: postsService, commentsService: commentsService, likesService: likesService)) {
                         Text("Log in")
                     }
                 }
