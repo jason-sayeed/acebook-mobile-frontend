@@ -31,7 +31,6 @@ struct PostView: View {
                 Spacer()
                     .font(.footnote)
             }
-            .border(.black, width: 1)
             .font(.system(size: 18))
             Spacer()
             Button() {
@@ -58,6 +57,7 @@ struct PostView: View {
             .frame(width: 25, height: 25)
             Spacer()
         }
+        .border(.black, width: 1)
         if showComments {
             CommentsView(post: post, commentsService: commentsService)
         }
