@@ -14,6 +14,8 @@ enum ActiveAlert {
 struct SignUpView: View {
     
     let authenticationService: AuthenticationService
+    let commentService: CommentServiceProtocol
+    let likesService: LikesServiceProtocol
     
     @State var email = ""
     @State var username = ""
@@ -21,8 +23,10 @@ struct SignUpView: View {
     @State var showAlert = false
     @State private var activeAlert: ActiveAlert = .failure
     
-    init(authenticationService: AuthenticationService) {
+    init(authenticationService: AuthenticationService, likesService: LikesServiceProtocol, commentService: CommentServiceProtocol) {
         self.authenticationService = authenticationService
+        self.likesService = likesService
+        self.commentService = commentService
     }
     
     var body: some View {
@@ -94,7 +98,7 @@ struct SignUpView: View {
                 }
                 HStack {
                     Text("Already have an account?")
-                    NavigationLink(destination: LoginView(authenticationService: authenticationService)) {
+                    NavigationLink(destination: LoginView(authenticationService: authenticationService, likesService: likesService, commentService: commentService)) {
                         Text("Log in")
                     }
                 }

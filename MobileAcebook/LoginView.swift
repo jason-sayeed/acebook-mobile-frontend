@@ -9,18 +9,22 @@ import SwiftUI
 
 struct LoginView: View {
     let authenticationService: AuthenticationService
+    let likesService: LikesServiceProtocol
+    let commentService: CommentServiceProtocol
     @State var email = ""
     @State var password = ""
     @State var failureAlert = false
     @State var isAuthenticated = false
     
-    init(authenticationService: AuthenticationService) {
+    init(authenticationService: AuthenticationService, likesService: LikesServiceProtocol, commentService: CommentServiceProtocol) {
         self.authenticationService = authenticationService
+        self.likesService = likesService
+        self.commentService = commentService
     }
     
     var body: some View {
         if isAuthenticated {
-            FeedView(postsService: PostsService(), commentService: CommentService())
+            FeedView(postsService: PostsService(), commentService: commentService, likesService: likesService)
         } else {
             NavigationView {
                 VStack {
@@ -77,7 +81,7 @@ struct LoginView: View {
                     }
                     HStack {
                         Text("Don't have an account?")
-                        NavigationLink(destination: SignUpView(authenticationService: authenticationService)) {
+                        NavigationLink(destination: SignUpView(authenticationService: authenticationService, likesService: likesService, commentService: commentService)) {
                             Text("Sign up")
                         }
                     }
