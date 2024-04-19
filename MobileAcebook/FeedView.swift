@@ -26,6 +26,7 @@ struct FeedView: View {
                     NavigationLink(destination: NewPostView(postsService: postsService)) {
                         Text("What's on your mind?")
                     }
+                    .font(.system(size: 22))
                     .padding()
                     ForEach(posts, id: \._id) { post in
                         PostView(post: post, commentsService: commentsService, likesService: likesService)

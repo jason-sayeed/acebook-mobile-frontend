@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PostView: View {
-        
+    
     @State var post: Post
     let commentsService: CommentsServiceProtocol
     let likesService: LikesServiceProtocol
@@ -21,14 +21,18 @@ struct PostView: View {
             VStack{
                 Text("User: \(post.createdBy.username)").fontWeight(.semibold)
                     .multilineTextAlignment(.trailing)
+                    .font(.system(size: 13))
                 Text(post.message)
                     .padding(10)
                 Divider()
                 Button(showComments ? "Hide comments" : "Show comments") {
                     showComments.toggle()
                 }
-                .font(.footnote)
+                Spacer()
+                    .font(.footnote)
             }
+            .font(.system(size: 18))
+            Spacer()
             Button() {
                 Task {
                     do {
@@ -53,6 +57,7 @@ struct PostView: View {
             .frame(width: 25, height: 25)
             Spacer()
         }
+        .border(.black, width: 1)
         if showComments {
             CommentsView(post: post, commentsService: commentsService)
         }
