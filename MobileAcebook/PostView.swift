@@ -14,6 +14,7 @@ struct PostView: View {
     let likesService: LikesServiceProtocol
     
     @State private var showComments = false
+    @State private var postLiked = false
     
     var body: some View {
         HStack {
@@ -28,16 +29,29 @@ struct PostView: View {
                 }
                 .font(.footnote)
             }
-            Button("Like") {
+            Button() {
                 Task {
                     do {
                         let success = try await likesService.updateLikesAsync(postId: post._id)
+                        postLiked.toggle()
                         print(success ? "Post liked/unliked" : "Failed to like/unlike post")
                     } catch {
                         print("Error updating likes \(error)")
                     }
                 }
+            } label: {
+                if postLiked {
+                    Image(systemName: "hand.thumbsup.fill")
+                        .resizable()
+                        .scaledToFit()
+                } else {
+                    Image(systemName: "hand.thumbsup")
+                        .resizable()
+                        .scaledToFit()
+                }
             }
+            .frame(width: 25, height: 25)
+            Spacer()
         }
         if showComments {
             CommentsView(post: post, commentsService: commentsService)
