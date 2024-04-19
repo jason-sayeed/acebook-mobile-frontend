@@ -9,15 +9,10 @@ import SwiftUI
 
 struct PostView: View {
     
-    let commentService: CommentServiceProtocol
+    @State var post: Post
+    let commentsService: CommentsServiceProtocol
     
-    @State private var post: Post
     @State private var showComments = false
-    
-    init(post: Post, commentService: CommentServiceProtocol) {
-        self.post = post
-        self.commentService = commentService
-    }
     
     var body: some View {
         VStack{
@@ -32,7 +27,7 @@ struct PostView: View {
         }
         .font(.footnote)
         if showComments {
-            CommentsView(post: post, commentService: commentService)
+            CommentsView(post: post, commentsService: commentsService)
         }
         Spacer()
     }
