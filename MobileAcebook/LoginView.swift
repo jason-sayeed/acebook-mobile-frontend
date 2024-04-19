@@ -20,7 +20,7 @@ struct LoginView: View {
     
     var body: some View {
         if isAuthenticated {
-            FeedView(postsService: PostsService())
+            FeedView(postsService: PostsService(), commentService: CommentService())
         } else {
             NavigationView {
                 VStack {
