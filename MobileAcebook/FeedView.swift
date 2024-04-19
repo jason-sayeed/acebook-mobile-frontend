@@ -9,12 +9,15 @@ import Foundation
 
 struct FeedView: View {
     let postsService: PostsServiceProtocol
+    let commentService: CommentServiceProtocol
     
     @State private var posts: [Post] = []
     
-    init(postsService: PostsServiceProtocol) {
+    init(postsService: PostsServiceProtocol, commentService: CommentServiceProtocol) {
         self.postsService = postsService
+        self.commentService = commentService
     }
+    
     var body: some View {
         NavigationView{
             ScrollView(.vertical) {
@@ -24,34 +27,25 @@ struct FeedView: View {
                         .scaledToFit()
                         .frame(width: 90, height: 90)
                         .accessibilityIdentifier("makers-logo")
-                    NavigationLink(destination: NewPostView()) {
+                    NavigationLink(destination: NewPostView(postService: postsService)) {
                         Text("What's on your mind?")
                     }
                     .padding()
-                        ForEach(posts, id: \._id) {item in
-                            Text("User: \(item.createdBy.username)").fontWeight(.semibold)
-                                .multilineTextAlignment(.trailing)
-                            Text(item.message)
-                                .padding(10)
-                            Divider()
-                            Spacer()
-                        }
+                    ForEach(posts, id: \._id) { post in
+                        PostView(post: post, commentService: commentService)
                     }
-                    
-                .onAppear {
-                    Task {
-                        do {
-                            posts = try await postsService.getAllPostsAsync()
-                        } catch {
-                            
-                            print("Error fetching posts: \(error)")
-                        }
+                }
+            }
+            .onAppear {
+                Task {
+                    do {
+                        posts = try await postsService.getAllPostsAsync()
+                    } catch {
+                        print("Error fetching posts: \(error)")
                     }
-                    
                 }
             }
         }
         .navigationBarBackButtonHidden(true)
     }
 }
-    
