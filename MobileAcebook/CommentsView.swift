@@ -20,6 +20,7 @@ struct CommentsView: View {
             HStack{
                 TextEditor(text: $comment)
                     .border(Color.gray)
+                    .font(.system(size: 15))
                 Button("Create Comment") {
                     Task {
                         do {

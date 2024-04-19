@@ -18,14 +18,18 @@ struct PostView: View {
         VStack{
             Text("User: \(post.createdBy.username)").fontWeight(.semibold)
                 .multilineTextAlignment(.trailing)
+                .font(.system(size: 13))
             Text(post.message)
                 .padding(10)
             Divider()
             Button(showComments ? "Hide comments" : "Show comments") {
                 showComments.toggle()
             }
+            Spacer()
         }
-        .font(.footnote)
+        .border(.black, width: 1)
+        .font(.system(size: 18))
+        Spacer()
         if showComments {
             CommentsView(post: post, commentsService: commentsService)
         }

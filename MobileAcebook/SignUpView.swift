@@ -77,6 +77,7 @@ struct SignUpView: View {
                             }
                         }
                     }
+                    .disabled(email.isEmpty || username.isEmpty || password.isEmpty)
                     .frame(maxWidth: .infinity)
                     .accessibilityIdentifier("signUpButton")
                     .alert(isPresented: $showAlert) {
