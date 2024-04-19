@@ -13,21 +13,15 @@ enum ActiveAlert {
 
 struct SignUpView: View {
     
-    let authenticationService: AuthenticationService
-    let commentService: CommentServiceProtocol
+    let authenticationService: AuthenticationServiceProtocol
+    let postsService: PostsServiceProtocol
+    let commentsService: CommentsServiceProtocol
     let likesService: LikesServiceProtocol
-    
     @State var email = ""
     @State var username = ""
     @State var password = ""
     @State var showAlert = false
     @State private var activeAlert: ActiveAlert = .failure
-    
-    init(authenticationService: AuthenticationService, likesService: LikesServiceProtocol, commentService: CommentServiceProtocol) {
-        self.authenticationService = authenticationService
-        self.likesService = likesService
-        self.commentService = commentService
-    }
     
     var body: some View {
         NavigationView {
@@ -98,16 +92,14 @@ struct SignUpView: View {
                 }
                 HStack {
                     Text("Already have an account?")
-                    NavigationLink(destination: LoginView(authenticationService: authenticationService, likesService: likesService, commentService: commentService)) {
+                    NavigationLink(destination: LoginView(authenticationService: authenticationService, postsService: postsService, commentsService: commentsService, likesService: likesService)) {
                         Text("Log in")
                     }
                 }
                 Spacer()
             }
             .accessibilityIdentifier("signUpButton")
-            
             Spacer()
-            
         }
         .navigationBarBackButtonHidden(true)
     }

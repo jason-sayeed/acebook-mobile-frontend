@@ -8,18 +8,12 @@
 import SwiftUI
 
 struct PostView: View {
-    
-    let commentService: CommentServiceProtocol
+        
+    @State var post: Post
+    let commentsService: CommentsServiceProtocol
     let likesService: LikesServiceProtocol
     
-    @State private var post: Post
     @State private var showComments = false
-    
-    init(post: Post, commentService: CommentServiceProtocol, likesService: LikesServiceProtocol) {
-        self.commentService = commentService
-        self.likesService = likesService
-        self.post = post
-    }
     
     var body: some View {
         HStack {
@@ -46,7 +40,7 @@ struct PostView: View {
             }
         }
         if showComments {
-            CommentsView(post: post, commentService: commentService)
+            CommentsView(post: post, commentsService: commentsService)
         }
         Spacer()
     }
